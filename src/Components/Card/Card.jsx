@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import { projectsData } from "../data/data";
 import Footer from '../Footer/Footer';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 const Card = () => {
     const [flipped, setFlipped] = useState({});
@@ -13,42 +14,38 @@ const Card = () => {
     return (
         <CardWrapper>
             <TitleContainer>
-
-                <Title>
-
-                    Mis Proyectos
-                </Title>
+                <Title>Mis Proyectos</Title>
             </TitleContainer>
             {projectsData.map((project, index) => (
-                <FlipCard key={index} flipped={flipped[index]}>
+                <FlipCard key={index}>
                     <FlipCardInner flipped={flipped[index]}>
-                        <CardFront bgColor={project.bgColor}>
+                        <CardFront bgColor={project.bgColor} onClick={() => handleFlip(index)}>
                             <CardContent>                           
-                                    <Title>{project.title}</Title>
+                                <Small>{project.title}</Small>
                                 <CardImage src={project.image} alt={project.title} />
                             </CardContent>
                         </CardFront>
                         <CardBack bgColor={project.bgColor}>
                             <CardContent>
                                 <CardDescription>{project.description}</CardDescription>
-                                <CardButton onClick={(e) => {
-                                    e.stopPropagation();
-                                    project.onButtonClick();
-                                }}>{project.buttonText}</CardButton>
+                                <CardButton onClick={project.onButtonClick}>
+                                    {project.buttonText}
+                                </CardButton>
                             </CardContent>
+                            <FlipBackButton onClick={() => handleFlip(index)}>
+                               
+                            <AiOutlineArrowLeft/>
+                            </FlipBackButton>
                         </CardBack>
                     </FlipCardInner>
-                    <ClickArea onClick={() => handleFlip(index)} />
                 </FlipCard>
             ))}
             <Footer />
         </CardWrapper>
-
     );
 }
 
 export default Card;
-
 
 const TitleContainer = styled.div`
   background-color: #002040; // Dark blue background
@@ -107,7 +104,7 @@ const CardWrapper = styled.div`
   align-items: center;
   gap: 20px;
   padding: 20px;
-
+background-color: #f0f5fa;
 `;
 
 const FlipCard = styled.div`
@@ -128,29 +125,87 @@ const FlipCardInner = styled.div`
   transform: ${props => props.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
 `;
 
-const CardFront = styled.div`
+const CardFront = styled.div.attrs(props => ({
+  style: {
+    backgroundColor: props.bgColor || '#e6f7ff'
+  }
+}))`
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background-color: ${props => props.bgColor || '#e6f7ff'};
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px; 
+  animation: fadeIn 1s ease-in-out;
+
+  // Add bubble animation
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: bubble 10s infinite;
+  }
+
+  &::before {
+    width: 40px;
+    height: 40px;
+    bottom: 20%;
+    left: 10%;
+    animation-duration: 8s;
+  }
+
+  &::after {
+    width: 60px;
+    height: 60px;
+    bottom: 10%;
+    right: 10%;
+    animation-duration: 12s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bubble {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-50px) scale(1.2);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100px) scale(1);
+      opacity: 0;
+    }
+  }
 `;
 
-const CardBack = styled.div`
+const CardBack = styled.div.attrs(props => ({
+  style: {
+    backgroundColor: props.bgColor || '#e6f7ff'
+  }
+}))`
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background-color: ${props => props.bgColor || '#e6f7ff'};
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
   align-items: center;
- border-radius: 20px; 
+  border-radius: 20px; 
 `;
 
 const ClickArea = styled.div`
@@ -161,6 +216,14 @@ const ClickArea = styled.div`
   bottom: 0;
   cursor: pointer;
 `;
+const Small = styled.small`
+  font-size: 0.8rem;
+  color: #fff;
+  display: block;
+  margin-top: 10px;
+`;
+
+
 
 const CardContent = styled.div`
   text-align: center;
@@ -168,11 +231,22 @@ const CardContent = styled.div`
      border-radius:20px;
 `;
 
-
 const CardDescription = styled.p`
   font-size: 0.9rem;
   color: #fff;
   margin-bottom: 15px;
+`;
+
+const FlipBackButton = styled.button`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 `;
 
 // Remove FishAnimation and related styles

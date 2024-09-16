@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Modal = ({ children, onClose }) => {
   return (
@@ -8,6 +8,7 @@ const Modal = ({ children, onClose }) => {
         <CloseButton onClick={onClose}>&times;</CloseButton>
         {children}
       </ModalContent>
+     
     </ModalOverlay>
   );
 };
@@ -37,6 +38,7 @@ const ModalContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  z-index: 1002; /* Asegúrate de que el contenido esté por encima de las burbujas */
 `;
 
 const CloseButton = styled.button`
@@ -48,6 +50,58 @@ const CloseButton = styled.button`
   border: none;
   cursor: pointer;
   color: #333;
+`;
+
+const bubbleAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+`;
+
+const BubblesContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1000; /* Asegúrate de que las burbujas estén detrás del contenido */
+`;
+
+const Bubble = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: ${bubbleAnimation} 4s infinite;
+  &:nth-child(1) {
+    left: 20%;
+    animation-duration: 4s;
+  }
+  &:nth-child(2) {
+    left: 40%;
+    animation-duration: 5s;
+  }
+  &:nth-child(3) {
+    left: 60%;
+    animation-duration: 6s;
+  }
+  &:nth-child(4) {
+    left: 80%;
+    animation-duration: 7s;
+  }
+  &:nth-child(5) {
+    left: 50%;
+    animation-duration: 8s;
+  }
 `;
 
 export default Modal;

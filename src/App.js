@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
-import Home from './Components/pages/home';
 
 
 const App = () => {
@@ -33,7 +32,7 @@ const App = () => {
           ))}
         </BubbleBackground>
         {showWelcome && (
-          <WelcomeOverlay fadeOut={fadeOut}>
+          <WelcomeOverlay $fadeOut={fadeOut}>
             <WelcomeText>
               <h1>Bienvenido a mi portafolio</h1>
               <h2>¿Qué te gustaría conocer de mí?</h2>
@@ -132,7 +131,7 @@ const WelcomeOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  opacity: ${props => props.fadeOut ? 0 : 1};
+  opacity: ${props => props.$fadeOut ? 0 : 1};
   transition: opacity 1s ease-out;
 `;
 

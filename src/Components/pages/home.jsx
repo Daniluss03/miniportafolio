@@ -87,6 +87,17 @@ const floatAnimation = keyframes`
   100% { transform: translateY(0px); }
 `;
 
+const bubbleAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+`;
+
 const HomeContainer = styled.div`
   padding: 20px;
   background-color: #fff; // Color vainilla claro
@@ -98,7 +109,12 @@ const AboutMeContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
+
 const AboutMeSection = styled.div`
   flex: 1;
   background-color: #f0f5fa;
@@ -118,6 +134,11 @@ const AboutMeSection = styled.div`
     font-size: 1rem;
     line-height: 1.6;
   }
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 `;
 
 const ProfileImageContainer = styled.div`
@@ -125,13 +146,42 @@ const ProfileImageContainer = styled.div`
   height: 200px;
   border-radius: 50%;
   overflow: hidden;
-  animation: ${floatAnimation} 3s ease-in-out infinite;
+  position: relative; // Add this line to position bubbles absolutely
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
- 
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+    margin-left: auto;  // Add this line to center the image
+    margin-right: auto; // Add this line to center the image
+  }
+
+  // Add bubble elements
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: ${bubbleAnimation} 3s infinite ease-in-out;
+  }
+
+  &::before {
+    left: 20%;
+    animation-duration: 4s;
+    animation-delay: 1s;
+  }
+
+  &::after {
+    left: 60%;
+    animation-duration: 5s;
+    animation-delay: 2s;
   }
 `;
 
@@ -224,7 +274,20 @@ const StyledSlider = styled(Slider)`
   .slick-prev:before, .slick-next:before {
     color: black;
   }
-    
+
+  @media (max-width: 768px) {
+    .slick-list {
+      margin: 0;
+    }
+
+    .slick-slide > div {
+      padding: 0;
+    }
+
+    .slick-prev, .slick-next {
+      display: none;
+    }
+  }
 `;
 
 const CertificationSlide = styled.div`
@@ -256,6 +319,13 @@ const CertificationSlide = styled.div`
     text-align: center;
     margin: 0;
     width: 100%; // Asegura que el texto ocupe todo el ancho
+  }
+
+  @media (max-width: 768px) {
+    height: auto;
+    .image-container {
+      height: auto;
+    }
   }
 `;
 
