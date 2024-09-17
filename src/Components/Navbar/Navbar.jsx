@@ -8,13 +8,10 @@ import Proyects from '../pages/Proyects';
 const Navbar = () => {
   const [hoveredIcon, setHoveredIcon] = useState(null);
   const [activeModal, setActiveModal] = useState(null);
-
   const navItems = [
-
-    { icon: AiOutlineProject, name: "Proyects", component: Proyects },
+    { icon: AiOutlineProject, name: "Proyectos", component: Proyects },
     { icon: AiOutlineHome, name: "Inicio", component: Home },
-    { icon: AiOutlineUser, name: "About me", component: Contact },
-  
+    { icon: AiOutlineUser, name: "Contacto", component: Contact },
   ];
 
   const openModal = (index) => {
@@ -30,7 +27,7 @@ const Navbar = () => {
       <NavContainer>
         <div className="links">
           {navItems.map((item, index) => (
-            <NavItem 
+            <NavItem
               key={index}
               onMouseEnter={() => setHoveredIcon(index)}
               onMouseLeave={() => setHoveredIcon(null)}
@@ -41,12 +38,11 @@ const Navbar = () => {
               </button>
             </NavItem>
           ))}
-        </div>
-      </NavContainer>
+        </div>   </NavContainer>
       {activeModal !== null && (
-        <Modal onClose={closeModal}>
+        <FadeInModal onClose={closeModal}>
           {React.createElement(navItems[activeModal].component)}
-        </Modal>
+        </FadeInModal>
       )}
     </>
   )
@@ -118,6 +114,19 @@ const IconName = styled.span`
     to {
       opacity: 1;
       top: calc(100% + 10px);
+    }
+  }
+`;
+
+const FadeInModal = styled(Modal)`
+  animation: fadeIn 0.3s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 `;

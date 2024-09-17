@@ -26,15 +26,7 @@ export const projectsData = [
     buttonText: "Explore",
     onButtonClick: () => console.log("Project 3 clicked")
   },
-  {
-    title: "Project 4",
-    description: "An innovative mobile app developed using React Native, demonstrating my cross-platform development abilities.",
-    image: "/images/project4.jpg",
-    bgColor: "#6c8eb4",
-    buttonText: "See Details",
-    onButtonClick: () => console.log("Project 4 clicked")
-  }
- 
+
   
  
 ];

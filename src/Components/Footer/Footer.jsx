@@ -6,14 +6,14 @@ const Footer = () => {
   return (
     <FooterContainer>
       <SocialLinks>
-        <SocialLink href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+        <SocialLink href="https://github.com/Daniluss03?tab=repositories" target="_blank" rel="noopener noreferrer">
           <FaGithub />
         </SocialLink>
-        <SocialLink href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+        <SocialLink href="https://www.linkedin.com/in/danilo-rincon-2a1bb9217" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
         </SocialLink>
       </SocialLinks>
-      <Copyright>© {new Date().getFullYear()} Your Name. All rights reserved.</Copyright>
+      <Copyright>© {new Date().getFullYear()} Danilo Rincon. All rights reserved.</Copyright>
     </FooterContainer>
   );
 };

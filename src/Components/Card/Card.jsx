@@ -67,7 +67,7 @@ const CardImage = styled.img`
   height: auto; 
   object-fit: cover;
   border-radius: 8px;
-  margin-top: 10px; 
+  margin-top: 60px; // Increased from 10px to 60px
   display: block;
   margin-left: auto; 
   margin-right: auto; 
@@ -75,7 +75,7 @@ const CardImage = styled.img`
 `;
 
 const CardButton = styled.button`
-  background-color: #007bff;
+  background-color: #004080;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -138,7 +138,7 @@ const CardFront = styled.div.attrs(props => ({
   justify-content: center;
   align-items: center;
   border-radius: 20px; 
-  animation: fadeIn 1s ease-in-out;
+  // Removed: animation: fadeIn 1s ease-in-out;
 
   // Add bubble animation
   &::before, &::after {
@@ -165,16 +165,7 @@ const CardFront = styled.div.attrs(props => ({
     animation-duration: 12s;
   }
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
+  // Removed: @keyframes fadeIn { ... }
 
   @keyframes bubble {
     0% {
@@ -217,24 +208,37 @@ const ClickArea = styled.div`
   cursor: pointer;
 `;
 const Small = styled.small`
-  font-size: 0.8rem;
-  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  color:#fff; 
   display: block;
-  margin-top: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  background-color: #004080;
+  border-radius: 20px 20px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
 `;
-
-
 
 const CardContent = styled.div`
   text-align: center;
-     background-color: #6c8eb4; 
-     border-radius:20px;
+  background-color:#4a6987;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 `;
 
 const CardDescription = styled.p`
   font-size: 0.9rem;
   color: #fff;
   margin-bottom: 15px;
+  text-align: justify;
+  padding: 0 15px;
 `;
 
 const FlipBackButton = styled.button`

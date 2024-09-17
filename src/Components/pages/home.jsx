@@ -32,13 +32,13 @@ const Home = () => {
 
     return (
         <HomeContainer>
-                 <TitleContainer>
-                   <Title>Un poco de mí</Title>
-                 </TitleContainer>
-                 <TitleContainerh3>
-                   <Titleh3>Sobre mi</Titleh3>
-                 </TitleContainerh3>
-            
+            <TitleContainer>
+                <Title>Un poco de mí</Title>
+            </TitleContainer>
+            <TitleContainerh3>
+                <Titleh3>Sobre mi</Titleh3>
+            </TitleContainerh3>
+
             <AboutMeContainer>
                 <AboutMeSection>
                     <p>
@@ -76,7 +76,7 @@ const Home = () => {
                     ))}
                 </StyledSlider>
             </CertificationsSection>
-            <Footer/>
+            <Footer />
         </HomeContainer>
     );
 };
@@ -211,7 +211,8 @@ const SkillCircle = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #7498b6;
+  background-color: #fff;
+  color:#002040;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -343,8 +344,8 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const TitleContainerh3= styled.div`
-  background-color: #F0F4F8; // Light grayish blue background
+const TitleContainerh3 = styled.div`
+  background-color:#004080;; // Light grayish blue background
  
   padding: 20px;
   margin-top: 10px;
@@ -352,7 +353,7 @@ const TitleContainerh3= styled.div`
   border-radius: 10px;
 `;
 const Titleh3 = styled.h3`
-  color:#002040;
+  color:#fff;
   text-align: lefth;
   font-size: 1rem;
   margin: 0;

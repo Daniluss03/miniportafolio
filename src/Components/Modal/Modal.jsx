@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+
+
 const Modal = ({ children, onClose }) => {
   return (
     <ModalOverlay onClick={onClose}>
@@ -12,6 +14,19 @@ const Modal = ({ children, onClose }) => {
     </ModalOverlay>
   );
 };
+
+
+
+const fadeIn = keyframes`
+  from {
+    opacity: 2;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -38,7 +53,8 @@ const ModalContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  z-index: 1002; /* Asegúrate de que el contenido esté por encima de las burbujas */
+  z-index: 1002;
+  animation: ${fadeIn} 2s ease-out; // Cambiado de 0.3s a 0.8s
 `;
 
 const CloseButton = styled.button`

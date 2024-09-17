@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 
-
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
@@ -40,6 +39,7 @@ const App = () => {
           </WelcomeOverlay>
         )}
         <Navbar />
+     
         <ContentContainer>
           <Routes>
             
