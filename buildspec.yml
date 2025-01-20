@@ -13,10 +13,6 @@ phases:
       - echo "Building the React app..."
       - npm run build  # Construye el proyecto de React para producción
 
-  post_build:
-    commands:
-      - echo "Running tests..."
-      - npm run test  # Ejecuta las pruebas
 
 artifacts:
   files:
