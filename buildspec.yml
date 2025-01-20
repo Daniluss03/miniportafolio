@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+    - echo installing dependencies...
+    - npm install
+  build:
+    commands:
+    - echo building the react app
+    - npm run build 
+  post_build:
+    commands:
+    - echo build completes. Syncing files to S3
+    - aws s3 sync build/ s3://www.daniluss.com --delete --acl public-read
+artifacts:
+  files:
+    - build/**/*
+  base-directory: build
+
+
+
