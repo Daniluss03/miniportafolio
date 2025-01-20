@@ -6,14 +6,20 @@ phases:
       nodejs: 16  # Define la versión de Node.js
     commands:
       - echo "Installing dependencies..."
-      - npm install  # Instala las dependencias de la subcarpeta
+      - npm install        # Instala las dependencias de la subcarpeta
 
   build:
     commands:
       - echo "Building the React app..."
-      - npm run build  # Construye el proyecto de React para producción
+
+      - npm run build       # Construye el proyecto de React para producción
+
+  post_build:
+    commands:
+      - echo "Build complete. Syncing files to S3..."
+    
 
 artifacts:
   files:
-    - '**/*'  # Incluye todos los archivos generados por npm run build
-  base-directory: miniportafolio/build  # Define que la base para los archivos es la subcarpeta build dentro de miniportafolio
+    - '**/*' # Incluye todos los archivos generados por npm run build
+  base-directory: miniportafolio/build  # Define que la base para los archivos es la subcarpeta build
