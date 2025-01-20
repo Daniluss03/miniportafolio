@@ -20,5 +20,5 @@ phases:
 
 artifacts:
   files:
-    - miniportafolio/build/**/*  # Incluye todos los archivos generados por npm run build
+    - build/**/*  # Incluye todos los archivos generados por npm run build
   base-directory: miniportafolio/build  # Define que la base para los archivos es la subcarpeta build
