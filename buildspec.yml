@@ -6,13 +6,11 @@ phases:
       nodejs: 16  # Define la versión de Node.js
     commands:
       - echo "Installing dependencies..."
-      - cd miniportafolio  # Navega a la subcarpeta del proyecto
       - npm install        # Instala las dependencias de la subcarpeta
 
   build:
     commands:
       - echo "Building the React app..."
-      - cd miniportafolio  # Asegúrate de estar en la subcarpeta
       - npm run build       # Construye el proyecto de React para producción
 
   post_build:
