@@ -17,6 +17,6 @@ phases:
 
 artifacts:
   files:
-    - '**/*'  # Incluye todos los archivos generados
+    - "**/*"  # Incluye todos los archivos generados
   discard:path: no
   base-directory: build  # Define que la base para los archivos es la subcarpeta build
